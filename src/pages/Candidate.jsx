@@ -1,13 +1,12 @@
-import React from 'react'
 import { useState,useEffect} from 'react';
+import CandidateService from '../services/CandidateService';
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
-import EmployerService from '../services/EmployerService';
 
-export default function Employer() {
-    const [employers, setEmployers] = useState([])
+export default function Candidate() {
+    const [candidates, setCandidates] = useState([])
     useEffect(()=>{
-        let employerService=new EmployerService()
-        employerService.getEmployers().then(result=>setEmployers(result.data.data))
+        let candidateService=new CandidateService()
+        candidateService.getCandidates().then((result)=>setCandidates(result.data.data))
     },[])
     
     return (
@@ -15,17 +14,24 @@ export default function Employer() {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Şirket İsmi</Table.HeaderCell>
-                        <Table.HeaderCell>Web Adresi</Table.HeaderCell>
-                        <Table.HeaderCell>Telefon Numarası</Table.HeaderCell>
+                        <Table.HeaderCell>email</Table.HeaderCell>
+                        <Table.HeaderCell>password</Table.HeaderCell>
+                        <Table.HeaderCell>isim</Table.HeaderCell>
+                        <Table.HeaderCell>Soyisim</Table.HeaderCell>
+                        <Table.HeaderCell>Tc Kimlik Numarası</Table.HeaderCell>
+                        <Table.HeaderCell>Doğum Tarihi</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {
-                        employers.map(employer => (
-                            <Table.Row key={employer.id}>
-                                <Table.Cell>{employer.firstName}</Table.Cell>
-                                <Table.Cell>{employer.lastName}</Table.Cell>
+                        candidates.map(candidate => (
+                            <Table.Row key={candidate.id}>
+                                <Table.Cell>{candidate.email}</Table.Cell>
+                                <Table.Cell>{candidate.password}</Table.Cell>
+                                <Table.Cell>{candidate.firstName}</Table.Cell>
+                                <Table.Cell>{candidate.lastName}</Table.Cell>
+                                <Table.Cell>{candidate.nationalIdentity}</Table.Cell>
+                                <Table.Cell>{candidate.birthDate}</Table.Cell>
                             </Table.Row>
                         ))
                     }

@@ -5,7 +5,7 @@ import JobPositionService from '../services/JobPositionService';
 
 
 export default function JobPositions() {
-    const [jobPositions, setJobPositions] = useState([])
+    const [positions, setJobPositions] = useState([])
     useEffect(()=>{
         let jobPositionsService=new JobPositionService()
         jobPositionsService.getJobPositions().then(result=>setJobPositions(result.data.data))
@@ -21,7 +21,7 @@ export default function JobPositions() {
                 </Table.Header>
                 <Table.Body>
                     {
-                        jobPositions.map(jobPosition => (
+                        positions.map(jobPosition => (
                             <Table.Row key={jobPosition.id}>
                                 <Table.Cell>{jobPosition.position}</Table.Cell>
                             </Table.Row>

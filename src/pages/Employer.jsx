@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState,useEffect} from 'react';
-import CandidateService from '../services/CandidateService';
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
+import EmployerService from '../services/EmployerService';
 
-export default function Candidate() {
-    const [candidates, setCandidates] = useState([])
+export default function Employer() {
+    const [employers, setEmployers] = useState([])
     useEffect(()=>{
-        let candidateService=new CandidateService()
-        candidateService.getCandidates().then(result=>setCandidates(result.data.data))
+        let employerService=new EmployerService()
+        employerService.getEmployers().then(result=>setEmployers(result.data.data))
     },[])
     
     return (
@@ -15,21 +15,18 @@ export default function Candidate() {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>isim</Table.HeaderCell>
-                        <Table.HeaderCell>Soyisim</Table.HeaderCell>
-                        <Table.HeaderCell>Tc Kimlik Numarası</Table.HeaderCell>
-                        <Table.HeaderCell>Doğum Tarihi</Table.HeaderCell>
-                        <Table.HeaderCell>Kategori</Table.HeaderCell>
+                        <Table.HeaderCell>Şirket İsmi</Table.HeaderCell>
+                        <Table.HeaderCell>Web Adresi</Table.HeaderCell>
+                        <Table.HeaderCell>Telefon Numarası</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {
-                        candidates.map(candidate => (
-                            <Table.Row key={candidate.id}>
-                                <Table.Cell>{candidate.firstName}</Table.Cell>
-                                <Table.Cell>{candidate.lastName}</Table.Cell>
-                                <Table.Cell>{candidate.nationalIdentity}</Table.Cell>
-                                <Table.Cell>{candidate.birthDate}</Table.Cell>
+                        employers.map(employer => (
+                            <Table.Row key={employer.id}>
+                                <Table.Cell>{employer.companyName}</Table.Cell>
+                                <Table.Cell>{employer.webAddress}</Table.Cell>
+                                <Table.Cell>{employer.phoneNumber}</Table.Cell>
                             </Table.Row>
                         ))
                     }
