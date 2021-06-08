@@ -6,7 +6,7 @@ export default function User() {
         <div>
             <Menu pointing vertical>
                 <Menu.Item
-                    name='İş Veren'
+                    name='İş Veren' content= 'Employers'
                 />
                 <Menu.Item
                     name='İş Arayan'

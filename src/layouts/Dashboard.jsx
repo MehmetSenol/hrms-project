@@ -1,8 +1,7 @@
 import React from 'react'
 import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
 import Sidebar from '../layouts/Sidebar'
-import Candidate from '../pages/Candidate'
-import JobPositions from '../pages/JobPosition'
+import Section from './Section'
 
 
 export default function Dashboard() {
@@ -10,11 +9,11 @@ export default function Dashboard() {
         <div>
             <Grid>
                 <GridRow>
-                    <GridColumn width={4}>
+                    <GridColumn width={3}>
                         <Sidebar/>
                     </GridColumn>
-                    <GridColumn width={12}>
-                        <Candidate/>
+                    <GridColumn width={13}>
+                        <Section/>
                     </GridColumn>
                 </GridRow>
             </Grid>
