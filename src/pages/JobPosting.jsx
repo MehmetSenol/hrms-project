@@ -1,13 +1,13 @@
 import React, { useState,useEffect} from 'react';
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
-import EmployerService from '../services/EmployerService';
+import JobPositionService from '../services/JobPostingService';
 
 
-export default function Employer() {
-    const [employers, setEmployers] = useState([])
+export default function JobPosting() {
+    const [jobPostings, setJobPostings] = useState([])
     useEffect(()=>{
-        let employerService=new EmployerService()
-        employerService.getEmployers().then(result=>setEmployers(result.data.data))
+        let jobPostingService=new JobPositionService()
+        jobPostingService.getJobPostings().then(result=>setJobPostings(result.data.data))
     },[])
     
     return (
@@ -15,18 +15,20 @@ export default function Employer() {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Şirket İsmi</Table.HeaderCell>
-                        <Table.HeaderCell>Web Adresi</Table.HeaderCell>
-                        <Table.HeaderCell>Telefon Numarası</Table.HeaderCell>
+                        <Table.HeaderCell>Bitiş Tarihi</Table.HeaderCell>
+                        <Table.HeaderCell>Maximum Ücret</Table.HeaderCell>
+                        <Table.HeaderCell>Minumum Ücret</Table.HeaderCell>
+                        <Table.HeaderCell>Aranan Elaman Sayısı</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {
-                        employers.map(employer => (
-                            <Table.Row key={employer.id}>
-                                <Table.Cell>{employer.companyName}</Table.Cell>
-                                <Table.Cell>{employer.webAddress}</Table.Cell>
-                                <Table.Cell>{employer.phoneNumber}</Table.Cell>
+                        jobPostings.map(jobPosting => (
+                            <Table.Row key={jobPosting.id}>
+                                <Table.Cell>{jobPosting.lastApplyDate}</Table.Cell>
+                                <Table.Cell>{jobPosting.maxWage}</Table.Cell>
+                                <Table.Cell>{jobPosting.minWage}</Table.Cell>
+                                <Table.Cell>{jobPosting.numberOfOpenPosition}</Table.Cell>
                             </Table.Row>
                         ))
                     }
@@ -54,3 +56,4 @@ export default function Employer() {
         </div>
     )
 }
+

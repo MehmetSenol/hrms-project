@@ -1,4 +1,4 @@
-import { useState,useEffect} from 'react';
+import React, { useState,useEffect} from 'react';
 import CandidateService from '../services/CandidateService';
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
 
@@ -26,9 +26,9 @@ export default function Candidate() {
                     {
                         candidates.map(candidate => (
                             <Table.Row key={candidate.id}>
+                                <Table.Cell>{candidate.firstName}</Table.Cell>
                                 <Table.Cell>{candidate.email}</Table.Cell>
                                 <Table.Cell>{candidate.password}</Table.Cell>
-                                <Table.Cell>{candidate.firstName}</Table.Cell>
                                 <Table.Cell>{candidate.lastName}</Table.Cell>
                                 <Table.Cell>{candidate.nationalIdentity}</Table.Cell>
                                 <Table.Cell>{candidate.birthDate}</Table.Cell>

@@ -1,13 +1,12 @@
 import React, { useState,useEffect} from 'react';
+import EmployeeService from '../services/EmployeeService';
 import { Icon, Label, Menu, Table } from 'semantic-ui-react';
-import EmployerService from '../services/EmployerService';
 
-
-export default function Employer() {
-    const [employers, setEmployers] = useState([])
+export default function Employee() {
+    const [employees, setEmployees] = useState([])
     useEffect(()=>{
-        let employerService=new EmployerService()
-        employerService.getEmployers().then(result=>setEmployers(result.data.data))
+        let employeeService=new EmployeeService()
+        employeeService.getEmployee().then((result)=>setEmployees(result.data.data))
     },[])
     
     return (
@@ -15,18 +14,18 @@ export default function Employer() {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Şirket İsmi</Table.HeaderCell>
-                        <Table.HeaderCell>Web Adresi</Table.HeaderCell>
-                        <Table.HeaderCell>Telefon Numarası</Table.HeaderCell>
+                        <Table.HeaderCell>Adı</Table.HeaderCell>
+                        <Table.HeaderCell>Soyadı</Table.HeaderCell>
+                        <Table.HeaderCell>Email</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {
-                        employers.map(employer => (
-                            <Table.Row key={employer.id}>
-                                <Table.Cell>{employer.companyName}</Table.Cell>
-                                <Table.Cell>{employer.webAddress}</Table.Cell>
-                                <Table.Cell>{employer.phoneNumber}</Table.Cell>
+                        employees.map(employee => (
+                            <Table.Row key={employee.id}>
+                                <Table.Cell>{employee.firstName}</Table.Cell>
+                                <Table.Cell>{employee.lastName}</Table.Cell>
+                                <Table.Cell>{employee.email}</Table.Cell>
                             </Table.Row>
                         ))
                     }
